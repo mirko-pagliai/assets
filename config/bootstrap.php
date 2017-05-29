@@ -33,6 +33,3 @@ if (!Configure::check('Assets.target')) {
     Configure::write('Assets.target', TMP . 'assets');
 }
 
-if (!is_writeable(Configure::read('Assets.target'))) {
-    trigger_error(sprintf('Directory %s not writeable', Configure::read('Assets.target')), E_USER_ERROR);
-}
