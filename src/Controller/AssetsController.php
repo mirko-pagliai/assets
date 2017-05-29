@@ -39,6 +39,17 @@ class AssetsController extends Controller
      */
     public function asset($filename)
     {
+        if(!is_dir(Configure::read('Assets.target')))
+        {
+            if(!mkdir(Configure::read('Assets.target'))) {
+                trigger_error(sprintf('Asset directory create failed! (%s)', Configure::read('Assets.target')), E_USER_ERROR);
+            }
+        }
+
+        if (!is_writeable(Configure::read('Assets.target'))) {
+            trigger_error(sprintf('Directory %s not writeable', Configure::read('Assets.target')), E_USER_ERROR);
+        }        
+        
         $file = Configure::read('Assets.target') . DS . $filename;
 
         if (!is_readable($file)) {
