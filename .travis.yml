@@ -27,7 +27,7 @@ matrix:
 install:
   - composer self-update
   - composer install --prefer-dist --no-interaction
-  - composer require --update-with-dependencies cakephp/cakephp:${CAKEPHP_VERSION}
+  - if [[ -z "$CAKEPHP_VERSION" ]]; then composer require --update-with-dependencies cakephp/cakephp:${CAKEPHP_VERSION}; fi
 
 script:
   - if [[ $PHPCS != '1' && $COVERAGE != '1' ]]; then vendor/bin/phpunit; fi
