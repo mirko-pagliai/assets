@@ -15,11 +15,14 @@ matrix:
     - php: 7.0
       env: COVERAGE=1
 
-env:
-  - CAKEPHP_VERSION="3.2.*"
-  - CAKEPHP_VERSION="3.3.*"
-  - CAKEPHP_VERSION="3.4.*"
-  - CAKEPHP_VERSION="3.5.*"
+    - php: 7.0
+      env: CAKEPHP_VERSION="3.2.*"
+
+    - php: 7.0
+      env: CAKEPHP_VERSION="3.3.*"
+
+    - php: 7.0
+      env: CAKEPHP_VERSION="3.4.*"
 
 install:
   - composer self-update
