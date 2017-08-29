@@ -35,6 +35,9 @@ class AssetsController extends Controller
             throw new AssetNotFoundException(__d('assets', 'File `{0}` doesn\'t exist', $file));
         }
 
-        return $this->response->withFile($file)->withType(pathinfo($file, PATHINFO_EXTENSION));
+        $this->response->file($file);
+        $this->response->type(pathinfo($file, PATHINFO_EXTENSION));
+
+        return $this->response;
     }
 }

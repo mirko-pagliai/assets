@@ -1,5 +1,8 @@
 # 1.x branch
 ## 1.1 branch
+### 1.1.6
+* this version is compatible with all CakePHP versions from 3.2 to 3.5.
+
 ### 1.1.5
 * the MIT license has been applied.
 
