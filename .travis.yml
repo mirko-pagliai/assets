@@ -24,6 +24,7 @@ env:
 install:
   - composer self-update
   - composer install --prefer-dist --no-interaction
+  - composer require cakephp/cakephp:${CAKEPHP_VERSION}
 
 script:
   - if [[ $PHPCS != '1' && $COVERAGE != '1' ]]; then vendor/bin/phpunit; fi
