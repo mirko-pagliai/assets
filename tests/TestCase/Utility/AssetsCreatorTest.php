@@ -234,13 +234,9 @@ class AssetsCreatorTest extends TestCase
         $file = Configure::read(ASSETS . '.target') . DS . sprintf('%s.%s', $result, 'js');
         $this->assertFileExists($file);
 
-        $expected = sprintf(
-            '/^%s%s?%s$/',
-            preg_quote('function other_alert(){alert(\'Another alert\')}', '/'),
-            preg_quote(PHP_EOL, '/'),
-            preg_quote('$(function(){var msg=\'Ehi!\';alert(msg)})', '/')
-        );
-        $this->assertRegExp($expected, file_get_contents($file));
+        $expected = 'function other_alert(){alert(\'Another alert\')}' . PHP_EOL .
+            '$(function(){var msg=\'Ehi!\';alert(msg)})';
+        $this->assertSameAsFile($file, $expected);
 
         //Tests array
         $result = (new AssetsCreator(['test', 'test2'], 'js'))->create();
