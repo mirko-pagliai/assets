@@ -139,8 +139,8 @@ class AssetsCreatorTest extends TestCase
         foreach ([
             'test',
             'test.css',
-            DS . 'css' . DS . 'test',
-            DS . 'css' . DS . 'test.css',
+            '/css/test',
+            '/css/test.css',
         ] as $path) {
             $this->assertEquals($expected, $pathsProperty(new AssetsCreator($path, 'css')));
         }
@@ -244,7 +244,7 @@ class AssetsCreatorTest extends TestCase
 
         $file = Configure::read(ASSETS . '.target') . DS . sprintf('%s.%s', $result, 'js');
         $this->assertFileExists($file);
-
+debug(file_get_contents($file));
         $expected = 'function other_alert(){alert(\'Another alert\')}' . PHP_EOL .
             '$(function(){var msg=\'Ehi!\';alert(msg)});' .
             'var first=\'This is first\';' .
@@ -299,8 +299,7 @@ class AssetsCreatorTest extends TestCase
      */
     public function testFilename()
     {
-        $asset = new AssetsCreator('test', 'css');
-        $this->assertRegExp('/^[\w\d]+$/', $asset->filename());
+        $this->assertRegExp('/^[\w\d]+$/', (new AssetsCreator('test', 'css'))->filename());
     }
 
     /**
