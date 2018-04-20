@@ -238,7 +238,7 @@ debug(file_get_contents($file));
         $expected = 'function other_alert(){alert(\'Another alert\')}'
             . '$(function(){var msg=\'Ehi!\';alert(msg)})';
 debug($expected === file_get_contents($file));
-        $expected = 'function other_alert(){alert(\'Another alert\')}' . PHP_EOL . '$(function(){var msg=\'Ehi!\';alert(msg)})';
+        $expected = 'function other_alert(){alert(\'Another alert\')}\r\n$(function(){var msg=\'Ehi!\';alert(msg)})';
 debug($expected === file_get_contents($file));
         $this->assertStringEqualsFile($file, $expected);
 
