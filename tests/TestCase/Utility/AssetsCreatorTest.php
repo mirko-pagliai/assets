@@ -71,7 +71,7 @@ class AssetsCreatorTest extends TestCase
     /**
      * Test for `__construct()` method, passing a no existing file
      * @expectedException RuntimeException
-     * @expectedExceptionMessage File `webroot/css/noExistingFile.css` doesn't exist
+     * @expectedExceptionMessageRegExp /^File `[\w\/\\\.]+` doesn't exist$/
      * @test
      */
     public function testConstructNoExistingFile()
@@ -82,7 +82,7 @@ class AssetsCreatorTest extends TestCase
     /**
      * Test for `__construct()` method, passing a no existing file from plugin
      * @expectedException RuntimeException
-     * @expectedExceptionMessage File `Plugin/TestPlugin/webroot/css/noExistingFile.css` doesn't exist
+     * @expectedExceptionMessageRegExp /^File `[\w\/\\\.]+` doesn't exist$/
      * @test
      */
     public function testConstructNoExistingFileFromPlugin()
@@ -139,8 +139,8 @@ class AssetsCreatorTest extends TestCase
         foreach ([
             'test',
             'test.css',
-            '/css/test',
-            '/css/test.css',
+            DS . 'css' . DS . 'test',
+            DS . 'css' . DS . 'test.css',
         ] as $path) {
             $this->assertEquals($expected, $pathsProperty(new AssetsCreator($path, 'css')));
         }
@@ -283,7 +283,7 @@ class AssetsCreatorTest extends TestCase
     /**
      * Test for `create()` method with no existing target directory
      * @expectedException RuntimeException
-     * @expectedExceptionMessageRegExp /^Failed to create file noExistingDir\/[a-z0-9]+\.css$/
+     * @expectedExceptionMessageRegExp /^Failed to create file noExistingDir[\w\d\/\\]+\.css$/
      * @test
      */
     public function testCreateNoExistingTarget()
