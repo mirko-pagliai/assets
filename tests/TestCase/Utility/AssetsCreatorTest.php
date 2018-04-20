@@ -24,7 +24,7 @@ use Cake\TestSuite\StringCompareTrait;
 class AssetsCreatorTest extends TestCase
 {
     use StringCompareTrait;
-    
+
     /**
      * Setup the test case, backup the static object values so they can be
      * restored. Specifically backs up the contents of Configure and paths in
@@ -234,26 +234,22 @@ class AssetsCreatorTest extends TestCase
         $result = (new AssetsCreator('test', 'js'))->create();
         $this->assertRegExp('/^[\w\d]+$/', $result);
 
-        $file = Configure::read(ASSETS . '.target') . DS . sprintf('%s.%s', $result, 'js');
-        $this->assertFileExists($file);
-
         $expected = 'function other_alert(){alert(\'Another alert\')}' . PHP_EOL .
             '$(function(){var msg=\'Ehi!\';alert(msg)})';
+        $file = Configure::read(ASSETS . '.target') . DS . sprintf('%s.%s', $result, 'js');
         $this->assertSameAsFile($file, $expected);
 
         //Tests array
         $result = (new AssetsCreator(['test', 'test2'], 'js'))->create();
         $this->assertRegExp('/^[\w\d]+$/', $result);
 
-        $file = Configure::read(ASSETS . '.target') . DS . sprintf('%s.%s', $result, 'js');
-        $this->assertFileExists($file);
-
         $expected = 'function other_alert(){alert(\'Another alert\')}' . PHP_EOL .
             '$(function(){var msg=\'Ehi!\';alert(msg)});' .
             'var first=\'This is first\';' .
             'var second=\'This is second\';' .
             'alert(first+\' and \'+second)';
-        $this->assertStringEqualsFile($file, $expected);
+        $file = Configure::read(ASSETS . '.target') . DS . sprintf('%s.%s', $result, 'js');
+        $this->assertSameAsFile($file, $expected);
     }
 
     /**
