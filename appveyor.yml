@@ -1,0 +1,30 @@
+build: false
+clone_folder: C:\projects\assets
+platform: x86
+
+environment:
+  global:
+    PHP: "C:/PHP"
+
+init:
+  - SET PATH=C:\php\;%PATH%
+
+install:
+  - cd c:\
+  - curl -fsS -o php.zip https://windows.php.net/downloads/releases/php-5.6.35-nts-Win32-VC11-x86.zip
+  - 7z x php.zip -oc:\php > nul
+  - cd c:\php
+  - copy php.ini-production php.ini
+  - echo date.timezone="UTC" >> php.ini
+  - echo extension_dir=ext >> php.ini
+  - echo extension=php_openssl.dll >> php.ini
+  - echo extension=php_intl.dll >> php.ini
+  - echo extension=php_mbstring.dll >> php.ini
+  - echo extension=php_fileinfo.dll >> php.ini
+  - cd C:\projects\assets
+  - appveyor DownloadFile https://getcomposer.org/composer.phar
+  - php composer.phar install --prefer-dist --no-interaction --ansi --no-progress
+
+test_script:
+  - cd C:\projects\assets
+  - vendor\bin\phpunit.bat
