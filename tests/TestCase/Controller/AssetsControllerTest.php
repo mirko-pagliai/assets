@@ -16,6 +16,7 @@ use Assets\Controller\AssetsController;
 use Assets\TestSuite\IntegrationTestCase;
 use Assets\Utility\AssetsCreator;
 use Cake\Core\Configure;
+use Cake\Filesystem\File;
 
 /**
  * AssetControllerTest class
@@ -25,7 +26,7 @@ class AssetsControllerTest extends IntegrationTestCase
     /**
      * Test for `asset()` method, with a a no existing file
      * @expectedException Assets\Http\Exception\AssetNotFoundException
-     * @expectedExceptionMessage File `/tmp/assets/noexistingfile.js` doesn't exist
+     * @expectedExceptionMessageRegExp /^File `[\w\d\/\\.:]+` doesn't exist$/
      * @test
      */
     public function testAssetNoExistingFile()
@@ -57,7 +58,7 @@ class AssetsControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
         $this->assertContentType('text/css');
         $this->assertFileResponse(Configure::read(ASSETS . '.target') . DS . $filename);
-        $this->assertInstanceOf('Cake\Filesystem\File', $this->_response->getFile());
+        $this->assertInstanceOf(File::class, $this->_response->getFile());
         $this->assertEquals([
             'dirname' => Configure::read(ASSETS . '.target'),
             'basename' => $filename,
@@ -101,7 +102,7 @@ class AssetsControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
         $this->assertContentType('application/javascript');
         $this->assertFileResponse(Configure::read(ASSETS . '.target') . DS . $filename);
-        $this->assertInstanceOf('Cake\Filesystem\File', $this->_response->getFile());
+        $this->assertInstanceOf(File::class, $this->_response->getFile());
         $this->assertEquals([
             'dirname' => Configure::read(ASSETS . '.target'),
             'basename' => $filename,

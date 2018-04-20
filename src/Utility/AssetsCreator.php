@@ -106,13 +106,14 @@ class AssetsCreator
             }
 
             $path = substr($path, 0, 1) === '/' ? substr($path, 1) : $this->type . DS . $path;
+            $path = DS === '/' ? $path : $path = str_replace('/', DS, $path);
             $path = empty($plugin) ? WWW_ROOT . $path : Plugin::path($plugin) . 'webroot' . DS . $path;
 
             //Appends the file extension, if not already present
             $path = pathinfo($path, PATHINFO_EXTENSION) == $this->type ? $path : sprintf('%s.%s', $path, $this->type);
 
             if (!is_readable($path)) {
-                throw new RuntimeException(__d('assets', 'File `{0}` doesn\'t exist', str_replace(APP, null, $path)));
+                throw new RuntimeException(__d('assets', 'File `{0}` doesn\'t exist', rtr($path)));
             }
 
             return $path;
