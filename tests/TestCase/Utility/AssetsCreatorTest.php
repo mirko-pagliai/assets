@@ -16,12 +16,15 @@ use Assets\TestSuite\TestCase;
 use Assets\Utility\AssetsCreator;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
+use Cake\TestSuite\StringCompareTrait;
 
 /**
  * AssetsCreatorTest class
  */
 class AssetsCreatorTest extends TestCase
 {
+    use StringCompareTrait;
+    
     /**
      * Setup the test case, backup the static object values so they can be
      * restored. Specifically backs up the contents of Configure and paths in
