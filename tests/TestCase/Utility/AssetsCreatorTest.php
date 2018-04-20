@@ -143,7 +143,7 @@ class AssetsCreatorTest extends TestCase
             '/css/test.css',
         ] as $path) {
             if ($expected !== $pathsProperty(new AssetsCreator($path, 'css'))) {
-                debug([$expected, $pathsProperty(new AssetsCreator($path, 'css'))]);
+                debug([$path, $expected, $pathsProperty(new AssetsCreator($path, 'css'))]);
             }
 
             $this->assertEquals($expected, $pathsProperty(new AssetsCreator($path, 'css')));
@@ -241,6 +241,9 @@ class AssetsCreatorTest extends TestCase
 debug(file_get_contents($file));
         $expected = 'function other_alert(){alert(\'Another alert\')}' . PHP_EOL .
             '$(function(){var msg=\'Ehi!\';alert(msg)})';
+debug($expected === file_get_contents($file));
+        $expected = 'function other_alert(){alert(\'Another alert\')}' . PHP_EOL . '$(function(){var msg=\'Ehi!\';alert(msg)})';
+debug($expected === file_get_contents($file));
         $this->assertStringEqualsFile($file, $expected);
 
         //Tests array
