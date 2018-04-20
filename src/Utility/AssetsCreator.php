@@ -112,7 +112,7 @@ class AssetsCreator
             $path = pathinfo($path, PATHINFO_EXTENSION) == $this->type ? $path : sprintf('%s.%s', $path, $this->type);
 
             if (!is_readable($path)) {
-                throw new RuntimeException(__d('assets', 'File `{0}` doesn\'t exist', str_replace(APP, null, $path)));
+                throw new RuntimeException(__d('assets', 'File `{0}` doesn\'t exist', rtr($path)));
             }
 
             return $path;
