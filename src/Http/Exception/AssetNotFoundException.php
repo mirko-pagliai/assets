@@ -13,16 +13,11 @@
  */
 namespace Assets\Http\Exception;
 
-use Cake\Core\Exception\Exception;
+use Cake\Network\Exception\NotFoundException;
 
 /**
  * AssetNotFoundException
  */
-class AssetNotFoundException extends Exception
+class AssetNotFoundException extends NotFoundException
 {
-    /**
-     * Default exception code
-     * @var integer
-     */
-    protected $_defaultCode = 404;
 }

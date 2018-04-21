@@ -1,8 +1,7 @@
 # 1.x branch
 ## 1.1 branch
 ### 1.1.8
-* `AssetNotFoundException` moved to `Assets\Http\Exception` namespace and now it
-    extends `Exception`;
+* `AssetNotFoundException` moved to `Assets\Http\Exception` namespace;
 * replaced `InternalErrorException` with `InvalidArgumentException` and 
     `RuntimeException`. This allows compatibility with CakePHP 3.6 branch;
 * added `IntegrationTestCase` and `TestCase` classes;
