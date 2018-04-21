@@ -2,7 +2,8 @@
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.txt)
 [![Build Status](https://travis-ci.org/mirko-pagliai/assets.svg?branch=master)](https://travis-ci.org/mirko-pagliai/assets)
-[![Coverage Status](https://img.shields.io/codecov/c/github/mirko-pagliai/assets.svg?style=flat-square)](https://codecov.io/github/mirko-pagliai/assets)
+[![codecov](https://codecov.io/gh/mirko-pagliai/assets/branch/master/graph/badge.svg)](https://codecov.io/gh/mirko-pagliai/assets)
+[![Build status](https://ci.appveyor.com/api/projects/status/mms93v2ghjld6cj8?svg=true)](https://ci.appveyor.com/project/mirko-pagliai/assets)
 
 *Assets* is a CakePHP plugin to allows you to handle and generate assets.
 
